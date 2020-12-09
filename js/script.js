@@ -109,11 +109,14 @@ function animProgBar(){
 		  let count = Number(counter.innerHTML);
 		  if(count < Number(number)){
 		  	 counter.innerHTML = count += 1;
-		  	 setProgress(count += 1);
+		  	 let progress = Number(counter.innerHTML)	 
+		  	 setProgress(progress);
+		  	 
+
 		  	} 
 		};
 
-		setInterval(changeNumber, 1000);
+		setInterval(changeNumber, 100);
 
 		circles.style.strokeDasharray = `${circumference} ${circumference}`;
 		circles.style.strokeDashoffset = circumference;
@@ -123,7 +126,28 @@ function animProgBar(){
 		};
 	});
 }
-animProgBar();
+
+window.addEventListener('scroll',function(){
+
+	const start = document.querySelector('.start-animation');
+	const startOffset = offset(start).top;
+
+	let counter = 0;
+
+	function offset(el){
+		const rect = el.getBoundingClientRect(),
+		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	return{ top: rect.top + scrollTop, left: rect.left + scrollLeft}
+	};
+
+	if(pageYOffset > startOffset && counter == 0){
+
+		animProgBar();
+		counter = 1;	
+	}
+});
+
 
 //slider team
 new Swiper('.team__slider', {
@@ -229,6 +253,5 @@ const coverMap = document.querySelector('.map__cover');
 showMap.addEventListener('click',function(){
 	coverMap.classList.add('active');
 });
-
 
 
