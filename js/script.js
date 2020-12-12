@@ -109,14 +109,12 @@ function animProgBar(){
 		  let count = Number(counter.innerHTML);
 		  if(count < Number(number)){
 		  	 counter.innerHTML = count += 1;
-		  	 let progress = Number(counter.innerHTML)	 
-		  	 setProgress(progress);
-		  	 
+		  	 setProgress(counter.textContent);
 
 		  	} 
 		};
 
-		setInterval(changeNumber, 100);
+		setInterval(changeNumber, 50);
 
 		circles.style.strokeDasharray = `${circumference} ${circumference}`;
 		circles.style.strokeDashoffset = circumference;
@@ -124,6 +122,7 @@ function animProgBar(){
 			const offset = circumference - percent/100 * circumference;
 			circles.style.strokeDashoffset = offset; 
 		};
+		setProgress(counter.textContent);
 	});
 }
 
@@ -175,7 +174,7 @@ new Swiper('.team__slider', {
 	observeParents:true,
 	observeSlideChildren: true,	
 });	
-//testimonials
+//slider testimonials
 new Swiper('.testimonials__slider', {
 	pagination:{
 		el:'.swiper-pagination',
@@ -202,7 +201,7 @@ new Swiper('.testimonials__slider', {
 	observeSlideChildren: true,	
 });	
 
-//blog
+//slider blog
 new Swiper('.blog__slider', {
 	pagination:{
 		el:'.swiper-pagination',
